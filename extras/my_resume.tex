@@ -1,0 +1,297 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=1 cm, % seperation between body and page edge from the top
+    bottom=1 cm, % seperation between body and page edge from the bottom
+    left=1 cm, % seperation between body and page edge from the left
+    right=1 cm, % seperation between body and page edge from the right
+    footskip=0.5 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Rajnish Kumar's Resume},
+    pdfauthor={Rajnish Kumar},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Rajnish Kumar - Page \thepage{} of \pageref*{LastPage}}
+}{}{} % replace number by desired string
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    \placelastupdatedtext
+    \begin{header}
+        \hrefWithoutArrow{https://rajnishkumar.me}{\color{black}{\textbf{\fontsize{24 pt}{24 pt}\selectfont Rajnish Kumar}}}
+
+        \vspace{0.2 cm}
+
+        \normalsize
+        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}New Delhi, India}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{mailto:ravisai.rajnish@gmail.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}ravisai.rajnish@gmail.com}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{tel:+918287051797}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}+91-8287051797}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://rajnishkumar.me/}{\color{black}{\footnotesize\faLink}\hspace*{0.13cm}rajnishkumar.me}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://github.com/RRajnishR}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}RRajnishR}}%
+    \end{header}
+
+    \vspace{0.3 cm - 0.3 cm}
+
+
+    \section{Professional Summary}
+
+
+
+        
+        \begin{onecolentry}
+            A Polyglot, Technical Lead with 8+ years of proven experience in Full-Stack Development, Project Management \& Deployment of multiple software solutions. I get intrigued by technology and mindful conversations. Looking for inspiration, envisioning the unlikely and working hard for the things that are worth it \end{onecolentry}
+    
+    \section{Experience}
+        
+        \begin{twocolentry}{
+        \textit{Noida, UP}    
+            
+        \textit{Feb’2022 - Present}}
+            \textbf{Technical Lead - Sr. Software Engineer}
+            
+            \textit{Prismberry Technologies (Now, Eyantra Ventures Ltd)}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Successfully interviewed, managed, and mentored over 25+ resources. Overseen 3 Projects till now. Outsourced to multiple clients. Adding details below:
+                \item \begin{minipage}[t]{0.24\textwidth}
+                        \raggedright
+                        \textbf{Nvidia}
+                        \end{minipage}%
+                        \begin{minipage}[t]{0.70\textwidth}
+                        \raggedleft
+                        \small \textit{Python, Bash Scripts, Jump Boxes, Redfish, Robot Framework, etc}
+                        \end{minipage}
+                \begin{highlights}
+                    \item Designed \& developed 4 tools that are used to test and benchmark various aspects of different platforms provided by Nvidia. These tools are used both internally and by their customers like Google \& Meta.
+                    \item Planned \& updated Resiliency test structure, Scaled the suite to handle 6+ platforms.
+                \end{highlights}
+                \item \begin{minipage}[t]{0.24\textwidth}
+                        \raggedright
+                        \textbf{Taxspanner}
+                        \end{minipage}%
+                        \begin{minipage}[t]{0.70\textwidth}
+                        \raggedleft
+                        \small \textit{Python, Django, React, NextJs, PostgreSql, Redis, Nginx, etc.}
+                        \end{minipage}
+                \begin{highlights}
+                    \item Lead a team of 8 to migrate the backend from Python 2.7 (Django 1.6) to Python 3.10 (Django 4.1). Further Enhanced UX and Interact-ability by integrating NextJS and Wagtail CMS.
+                    \item Recorded 40\% increase in Signups after integrating ERI APIs. This enabled end users to file ITRs directly from our Platform.
+                \end{highlights}
+                \item \begin{minipage}[t]{0.24\textwidth}
+                        \raggedright
+                        \textbf{Flipkart Health Plus}
+                        \end{minipage}%
+                        \begin{minipage}[t]{0.70\textwidth}
+                        \raggedleft
+                        \small \textit{Python, Php, NodeJS, MySql, SqlServer, MongoDB, GCP, AWS, etc.}
+                        \end{minipage}
+                \begin{highlights}
+                    \item Spearheaded the development of multiple microservices like Cart, Refund \& Coupon suggestion service. This helped in automating their manual processes and reduced the TAT by 70%.
+                    \item Maintained the legacy System. Built 100+ New APIs, Modified and scripted multiple Stored Procedures. Ultimately improving features on their Mobile \& Web Applications.
+                \end{highlights}
+            \end{highlights}
+        \end{onecolentry}
+        \vspace{0.2 cm}
+        \begin{twocolentry}{
+        \textit{Noida, UP}    
+            
+        \textit{Oct’2019 - Jan’2022}}
+            \textbf{Senior Software Engineer}
+            
+            \textit{Gaiasys Technologies Pvt. Ltd.}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Redesigned the architecture of a proprietary SaaS that was still in development, aimed at the construction industry \textbf{'Earther'}. Created more than 12+ interconnected modules. Used \textbf{Php, Laravel, MySql, Node, Angular, etc.}
+                \item Identified and removed performance bottlenecks in multiple APIs. Refactored to bring down the response time from an average \textbf{3.5s to 250-500} ms
+                \item Engineered an architecture utilizing Raspberry Pi (Used NodeJs to create a reverse-proxy server), Enabled communication between multiple weighbridges and our system. This reduced data collection error and increased efficiency by 50\%.
+                \item Initiated, planned \& delivered a hybrid mobile app 'Daybook' using React Native and Django in 2 weeks \end{highlights} \end{onecolentry}
+        \vspace{0.2 cm}
+        \begin{twocolentry}{
+        \textit{New Delhi}    
+            
+        \textit{May’2016 - Sep’2019}}
+            \textbf{Software Engineer}
+            
+            \textit{LangÉcole Edu. Pvt. Ltd.}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Headed full stack development of more than 5 web-based projects, which led to an increase in students enrollment by 65\% and in getting 3 major clients onboard
+            \end{highlights}
+        \end{onecolentry}
+    \section{Education}
+        \begin{twocolentry}{
+            
+            
+        \textit{Oct 2012 – May 2016}
+        \textit{Panipat, India}}
+            \textbf{APIIT SD India [Staffordshire University, UK]}
+
+            \textit{B.E in Computing Engineering}
+        \end{twocolentry}
+
+        \vspace{0.02 cm}
+
+    \section{Skills}
+
+
+
+        
+        \begin{onecolentry}
+            \begin{highlights}
+                \item HTML \textbar\ CSS \textbar\ Python \textbar\ JS \textbar\ Php \textbar\ Java \textbar\ SQL \textbar\ NoSQL \textbar\ Message Brokers \textbar\ Golang \textbar\ GCP \textbar\ AWS
+                \item Django \textbar\ FastAPI \textbar\ MERN \textbar\ React-Native \textbar\ Laravel \textbar\ CodeIgniter \textbar\ MySQL \textbar\ SqlServer \textbar\ Postgres \textbar\ MongoDB \textbar\ Bash Scripts \textbar\ Redis \textbar\ RabbitMQ \textbar\ Docker \textbar\ Git \textbar\ Mercurial
+                \item Project Management \textbar\ SDLC \textbar\ Usability \textbar\ Leadership \textbar\ Mentorship \textbar\ Automation \textbar\ Agile \textbar\ Scrum \textbar\ CI/CD \textbar\ AI
+            \end{highlights}
+        \end{onecolentry}
+
+
+    
+
+\end{document}

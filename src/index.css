@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-light: #ffffff;
+  --text-light: #1a1a1a;
+  --background-dark: #1a1a1a;
+  --text-dark: #ffffff;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.animated-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-bg::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: repeating-conic-gradient(
+    from var(--mouse-x, 0deg),
+    #0ea5e9 0deg 60deg,
+    #6366f1 60deg 120deg,
+    #8b5cf6 120deg 180deg,
+    #ec4899 180deg 240deg,
+    #0ea5e9 240deg 360deg
+  );
+  animation: rotate 8s linear infinite;
+  opacity: 0.3;
+  filter: blur(30px);
+  transform-origin: center;
+  mix-blend-mode: multiply;
+}
+
+.theme-dark .animated-bg::before {
+  opacity: 0.4;
+  filter: blur(40px);
+  mix-blend-mode: normal;
+}
+
+.animated-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    transparent 0%,
+    rgba(var(--bg-rgb), 0.3) 100%
+  );
+  backdrop-filter: blur(20px);
+}
+
+.theme-light {
+  --bg-rgb: 0, 0, 0;
+}
+
+.theme-dark {
+  --bg-rgb: 255, 255, 255;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  to {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.line-1 {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+.line-2 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  background: linear-gradient(to right, #0ea5e9, #6366f1);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.line-3, .line-4 {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
