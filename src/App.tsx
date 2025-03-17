@@ -72,7 +72,7 @@ function App() {
 
   const handleDownload = () => {
     // Replace with actual resume URL
-    const resumeUrl = '/path-to-your-resume.pdf';
+    const resumeUrl = 'https://github.com/RRajnishR/pfolio-2025/raw/refs/heads/main/extras/Rajnish%20Kumar-Tech-Lead-Sr-Software%20Engineer-2025.pdf';
     window.open(resumeUrl, '_blank');
   };
 
@@ -146,7 +146,7 @@ function App() {
       {/* Floating Profile Picture */}
       <div className="absolute bottom-8 right-8 z-10 animate-float">
         <img
-          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?fit=crop&w=150&h=150"
+          src="https://raw.githubusercontent.com/RRajnishR/pfolio-2025/287c769f13002acc5b18db13069bd12cf0e56401/extras/me.png"
           alt="Profile"
           className="w-16 h-16 rounded-full border-4 border-white dark:border-gray-800 shadow-lg"
         />
