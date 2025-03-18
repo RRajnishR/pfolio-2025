@@ -111,7 +111,7 @@ function App() {
             {/* Task Animation */}
             {showSocial && (
               <div className="mt-8 line-4 text-gray-800 dark:text-white fade-in"
-                   style={{ animationDelay: '0.75s' }}>
+                   style={{ animationDelay: '0.50s' }}>
                 I {tasks[currentTask]}
               </div>
             )}

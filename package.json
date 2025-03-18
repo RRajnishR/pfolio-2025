@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://RRajnishR.github.io/pfolio-2025/",
+  "homepage": "https://rajnish.me/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
